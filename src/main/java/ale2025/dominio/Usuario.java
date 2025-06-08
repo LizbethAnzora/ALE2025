@@ -5,7 +5,7 @@ public class Usuario {
     private String nombre;
     private String passwordHash;
     private String correoElectronico ;
-    private byte Estado;
+    private byte estado;
 
     public Usuario() {
     }
@@ -15,7 +15,7 @@ public class Usuario {
         this.nombre = nombre;
         this.passwordHash = passwordHash;
         this.correoElectronico = correoElectronico;
-        Estado = estado;
+        estado = estado;
     }
 
     public int getId() {
@@ -51,16 +51,16 @@ public class Usuario {
     }
 
     public byte getEstado() {
-        return Estado;
+        return estado;
     }
 
     public void setEstado(byte estado) {
-        Estado = estado;
+        estado = estado;
     }
 
     public String getStrEstado(){
         String str="";
-        switch (Estado){
+        switch (estado){
             case 1:
                 str = "ACTIVO";
                 break;
