@@ -14,6 +14,7 @@ public class PasswordHasher {
      * @return Una cadena que representa la contraseña hasheada y codificada en Base64.
      * Retorna null si el algoritmo SHA-256 no está disponible en el entorno.
      */
+
     public static String hashPassword(String password) {
         try {
             // Obtiene una instancia del algoritmo de resumen de mensajes SHA-256.

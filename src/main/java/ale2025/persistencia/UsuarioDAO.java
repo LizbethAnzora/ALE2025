@@ -35,7 +35,7 @@ public class UsuarioDAO {
             // Se especifica que se retornen las claves generadas automáticamente.
             PreparedStatement ps = conn.connect().prepareStatement(
                     "INSERT INTO " +
-                            "Users (nombre, passwordHash, correoElectronico, estado)" +
+                            "Usuario (nombre, passwordHash, correoElectronico, estado)" +
                             "VALUES (?, ?, ?, ?)",
                     java.sql.Statement.RETURN_GENERATED_KEYS
             );
@@ -44,8 +44,10 @@ public class UsuarioDAO {
             ps.setString(2, PasswordHasher.hashPassword(usuario.getPasswordHash())); // Hashear la contraseña antes de guardarla.
             ps.setString(3, usuario.getCorreoElectronico()); // Asignar el correo electrónico del usuario.
             ps.setByte(4, usuario.getEstado());   // Asignar el estado del usuario.
+
             // Ejecutar la sentencia de inserción y obtener el número de filas afectadas.
             int affectedRows = ps.executeUpdate();
+
             // Verificar si la inserción fue exitosa (al menos una fila afectada).
             if (affectedRows != 0) {
                 // Obtener las claves generadas automáticamente por la base de datos (en este caso, el ID).
@@ -72,6 +74,7 @@ public class UsuarioDAO {
         }
         return res; // Retornar el usuario creado (con su ID asignado) o null si hubo un error.
     }
+
     /**
      * Actualiza la información de un usuario existente en la base de datos.
      *
@@ -127,7 +130,7 @@ public class UsuarioDAO {
         try{
             // Preparar la sentencia SQL para eliminar un usuario por su ID.
             ps = conn.connect().prepareStatement(
-                    "DELETE FROM Users WHERE id = ?"
+                    "DELETE FROM Usuario WHERE id = ?"
             );
             // Establecer el valor del parámetro en la sentencia preparada (el ID del usuario a eliminar).
             ps.setInt(1, usuario.getId());
@@ -151,24 +154,26 @@ public class UsuarioDAO {
      * La búsqueda se realiza de forma parcial, es decir, si el nombre del usuario contiene
      * la cadena de búsqueda (ignorando mayúsculas y minúsculas), será incluido en los resultados.
      *
-     * @param name La cadena de texto a buscar dentro de los nombres de los usuarios.
+     * @param nombre La cadena de texto a buscar dentro de los nombres de los usuarios.
      * @return Un ArrayList de objetos User que coinciden con el criterio de búsqueda.
      * Retorna una lista vacía si no se encuentran usuarios con el nombre especificado.
      * @throws SQLException Si ocurre un error al interactuar con la base de datos
      * durante la búsqueda de usuarios.
      */
-    public ArrayList<Usuario> search(String name) throws SQLException{
+    public ArrayList<Usuario> search(String nombre) throws SQLException{
         ArrayList<Usuario> records  = new ArrayList<>(); // Lista para almacenar los usuarios encontrados.
         try {
             // Preparar la sentencia SQL para buscar usuarios por nombre (usando LIKE para búsqueda parcial).
             ps = conn.connect().prepareStatement("SELECT id, nombre, correoElectronico, estado " +
-                    "FROM Users " +
-                    "WHERE name LIKE ?");
+                    "FROM Usuario " +
+                    "WHERE nombre LIKE ?");
             // Establecer el valor del parámetro en la sentencia preparada.
             // El '%' al inicio y al final permiten la búsqueda de la cadena 'name' en cualquier parte del nombre del usuario.
-            ps.setString(1, "%" + name + "%");
+            ps.setString(1, "%" + nombre + "%");
+
             // Ejecutar la consulta SQL y obtener el resultado.
             rs = ps.executeQuery();
+
             // Iterar a través de cada fila del resultado.
             while (rs.next()){
                 // Crear un nuevo objeto User para cada registro encontrado.
@@ -205,15 +210,19 @@ public class UsuarioDAO {
      */
     public Usuario getById(int id) throws SQLException{
         Usuario usuario  = new Usuario(); // Inicializar un objeto User que se retornará.
+
         try {
             // Preparar la sentencia SQL para seleccionar un usuario por su ID.
-            ps = conn.connect().prepareStatement("SELECT id, nombre, correoElectronico, estado " +
-                    "FROM Users " +
+            ps = conn.connect().prepareStatement("SELECT id, nombre , correoElectronico, estado " +
+                    "FROM Usuario " +
                     "WHERE id = ?");
+
             // Establecer el valor del parámetro en la sentencia preparada (el ID a buscar).
             ps.setInt(1, id);
+
             // Ejecutar la consulta SQL y obtener el resultado.
             rs = ps.executeQuery();
+
             // Verificar si se encontró algún registro.
             if (rs.next()) {
                 // Si se encontró un usuario, asignar los valores de las columnas al objeto User.
@@ -253,27 +262,29 @@ public class UsuarioDAO {
      * durante el proceso de autenticación.
      */
     public Usuario authenticate(Usuario usuario) throws SQLException{
-        Usuario userAutenticate = new Usuario(); // Inicializar un objeto User para almacenar el usuario autenticado.
+        Usuario usuarioAutenticate = new Usuario(); // Inicializar un objeto User para almacenar el usuario autenticado.
         try {
             // Preparar la sentencia SQL para seleccionar un usuario por su correo electrónico,
             // contraseña hasheada y estado activo (status = 1).
-            ps = conn.connect().prepareStatement("SELECT id, nombre, correoEletronico, estado " +
-                    "FROM Usuarios " +
+            ps = conn.connect().prepareStatement("SELECT id, nombre, correoElectronico, estado " +
+                    "FROM Usuario " +
                     "WHERE correoElectronico = ? AND passwordHash = ? AND estado = 1");
+
             // Establecer los valores de los parámetros en la sentencia preparada.
             ps.setString(1, usuario.getCorreoElectronico()); // Asignar el correo electrónico del usuario a autenticar.
             ps.setString(2, PasswordHasher.hashPassword(usuario.getPasswordHash())); // Hashear la contraseña proporcionada para compararla con la almacenada.
             rs = ps.executeQuery(); // Ejecutar la consulta SQL y obtener el resultado.
+
             // Verificar si se encontró un registro que coincida con las credenciales y el estado.
             if (rs.next()) {
                 // Si se encontró un usuario, asignar los valores de las columnas al objeto userAutenticate.
-                userAutenticate.setId(rs.getInt(1));       // Obtener el ID del usuario autenticado.
-                userAutenticate.setNombre(rs.getString(2));   // Obtener el nombre del usuario autenticado.
-                userAutenticate.setCorreoElectronico(rs.getString(3));  // Obtener el correo electrónico del usuario autenticado.
-                userAutenticate.setEstado(rs.getByte(4));    // Obtener el estado del usuario autenticado.
+                usuarioAutenticate.setId(rs.getInt(1));       // Obtener el ID del usuario autenticado.
+                usuarioAutenticate.setNombre(rs.getString(2));   // Obtener el nombre del usuario autenticado.
+                usuarioAutenticate.setCorreoElectronico(rs.getString(3));  // Obtener el correo electrónico del usuario autenticado.
+                usuarioAutenticate.setEstado(rs.getByte(4));    // Obtener el estado del usuario autenticado.
             } else {
                 // Si no se encontraron coincidencias, la autenticación falla y se establece userAutenticate a null.
-                userAutenticate = null;
+                usuarioAutenticate = null;
             }
             ps.close(); // Cerrar la sentencia preparada para liberar recursos.
             rs.close(); // Cerrar el conjunto de resultados para liberar recursos.
@@ -286,7 +297,7 @@ public class UsuarioDAO {
             rs = null;         // Establecer el conjunto de resultados a null.
             conn.disconnect(); // Desconectar de la base de datos.
         }
-        return userAutenticate; // Retornar el objeto User autenticado o null si la autenticación falló.
+        return usuarioAutenticate; // Retornar el objeto User autenticado o null si la autenticación falló.
     }
     /**
      * Actualiza la contraseña de un usuario existente en la base de datos.
@@ -306,7 +317,7 @@ public class UsuarioDAO {
         try{
             // Preparar la sentencia SQL para actualizar solo la columna 'passwordHash' de un usuario.
             ps = conn.connect().prepareStatement(
-                    "UPDATE Usuarios " +
+                    "UPDATE Usuario " +
                             "SET passwordHash = ? " +
                             "WHERE id = ?"
             );
