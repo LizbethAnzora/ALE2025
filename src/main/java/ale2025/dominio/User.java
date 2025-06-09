@@ -6,8 +6,10 @@ public class User {
     private String passwordHash;
     private String email;
     private byte status;
+
     public User() {
     }
+
     public User(int id, String name, String passwordHash, String email, byte status) {
         this.id = id;
         this.name = name;
