@@ -1,60 +1,56 @@
--- Crear base de datos
-CREATE DATABASE ClinicaSaludTotal;
-GO
-
 USE ClinicaSaludTotal;
 GO
 
--- Tabla de Usuarios (en español)
-CREATE TABLE Usuarios (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Nombre VARCHAR(20) NOT NULL,
-    PasswordHash VARCHAR(10) NOT NULL,
-    CorreoElectronico VARCHAR(20) NOT NULL UNIQUE,
-    Estado TINYINT NOT NULL
+CREATE TABLE Users (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    name VARCHAR(100) NOT NULL,
+    passwordHash VARCHAR(64) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    status TINYINT NOT NULL
 );
+GO
 
--- Tabla de Pacientes (con Teléfono en vez de Correo)
 CREATE TABLE Pacientes (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    NombreCompleto VARCHAR(50) NOT NULL,
-    Telefono VARCHAR(9),
-    FechaNacimiento DATE NOT NULL
+    id INT PRIMARY KEY IDENTITY(1,1),
+    nombreCompleto VARCHAR(50) NOT NULL,
+    telefono VARCHAR(9),
+    fechaNacimiento DATE NOT NULL
 );
+GO
 
--- Tabla de Especialidades
 CREATE TABLE Especialidades (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Nombre VARCHAR(30) NOT NULL UNIQUE,
-    Descripcion VARCHAR(255)
+    id INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(30) NOT NULL UNIQUE,
+    descripcion VARCHAR(255)
 );
+GO
 
--- Tabla de Médicos (relacionada con Especialidades)
 CREATE TABLE Medicos (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    NombreCompleto VARCHAR(50) NOT NULL,
-    EspecialidadId INT NOT NULL,
-    Sueldo DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (EspecialidadId) REFERENCES Especialidades(Id)
+    id INT PRIMARY KEY IDENTITY(1,1),
+    nombreCompleto VARCHAR(50) NOT NULL,
+    especialidadId INT NOT NULL,
+    sueldo DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (especialidadId) REFERENCES Especialidades(id)
 );
+GO
 
--- Tabla de Horarios de atención por médico
 CREATE TABLE Horarios (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    MedicoId INT NOT NULL,
-    DiaSemana VARCHAR(15) NOT NULL,
-    HoraInicio TIME NOT NULL,
-    HoraFin TIME NOT NULL,
-    FOREIGN KEY (MedicoId) REFERENCES Medicos(Id)
+    id INT PRIMARY KEY IDENTITY(1,1),
+    medicoId INT NOT NULL,
+    diaSemana VARCHAR(15) NOT NULL,
+    horaInicio TIME NOT NULL,
+    horaFin TIME NOT NULL,
+    FOREIGN KEY (medicoId) REFERENCES Medicos(id)
 );
+GO
 
--- Tabla de Citas (relacionada con Pacientes y Médicos)
 CREATE TABLE Citas (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    PacienteId INT NOT NULL,
-    MedicoId INT NOT NULL,
-    FechaCita DATE NOT NULL,
-    CostoConsulta DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (PacienteId) REFERENCES Pacientes(Id),
-    FOREIGN KEY (MedicoId) REFERENCES Medicos(Id)
+    id INT PRIMARY KEY IDENTITY(1,1),
+    pacienteId INT NOT NULL,
+    medicoId INT NOT NULL,
+    fechaCita DATE NOT NULL,
+    costoConsulta DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (pacienteId) REFERENCES Pacientes(id),
+    FOREIGN KEY (medicoId) REFERENCES Medicos(id)
 );
+GO
