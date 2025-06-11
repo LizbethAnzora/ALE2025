@@ -104,7 +104,7 @@ class MedicoDAOTest {
         // la tabla 'Especialidades' debe existir y contener al menos una especialidad
         // con el ID especificado en 'especialidadId' (por ejemplo, 1).
         // Si no existe, este test fallará con un error de clave foránea.
-        Medico medico = new Medico(0, "Dr. Juan Pérez", 2, 3500.00); // Usamos especialidadId = 1 como ejemplo
+        Medico medico = new Medico(0, "Dr. Juan Pérez", 1, 3500.00); // Usamos especialidadId = 1 como ejemplo
 
         // Llama al método 'create' para persistir el médico de prueba en la base de datos y verifica su creación.
         Medico testMedico = create(medico);
