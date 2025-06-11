@@ -111,7 +111,7 @@ class CitaDAOTest {
         // con los IDs especificados en 'pacienteId' y 'medicoId' (por ejemplo, 1 y 1).
         // Si no existen, este test fallará con un error de clave foránea.
         // Asegúrate de crear al menos un paciente y un médico antes de ejecutar este test.
-        Cita cita = new Cita(0, 1, 1, Date.valueOf("2024-12-25"), 75.00); // pacienteId=1, medicoId=1 como ejemplo
+        Cita cita = new Cita(0, 5, 2, Date.valueOf("2024-12-25"), 75.00); // pacienteId=1, medicoId=1 como ejemplo
 
         // Llama al método 'create' para persistir la cita de prueba en la base de datos y verifica su creación.
         Cita testCita = create(cita);
