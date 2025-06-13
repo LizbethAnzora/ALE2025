@@ -24,9 +24,8 @@ public class ConnectionManager {
      */
 
 
+
     private static final String STR_CONNECTION = "jdbc:sqlserver://ANZORAENEIDAPC\\SQLEXPRESS;" +
-
-
             "encrypt=true; " +
             "database=ClinicaSaludTotal; " +
             "trustServerCertificate=true;" +
