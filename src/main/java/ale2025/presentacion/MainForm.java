@@ -1,14 +1,15 @@
 package ale2025.presentacion;
 
-import javax.swing.*; // Importa el paquete javax.swing, que proporciona clases para crear interfaces gráficas de usuario (GUI) en Java Swing (como JFrame, JPanel, JButton, JLabel, JTextField, JPasswordField, JOptionPane, etc.).
-import ale2025.dominio.User; // Importa la clase User desde el paquete esfe.dominio. Esta clase  representa la entidad de usuario con sus atributos (id, nombre, email, contraseña, estado, etc.).
+import javax.swing.*;
+import ale2025.dominio.User;
 
+import java.awt.*;
 import java.net.URL;
 
 public class MainForm extends JFrame {
     private User userAutenticate;
-    private JPanel mainPanel;
-    private JLabel imageLabel;
+    private JPanel mainPanel;   // <-- Solo la declaración de la variable
+    private JLabel imageLabel;  // <-- Solo la declaración de la variable
 
     public User getUserAutenticate() {
         return userAutenticate;
@@ -19,32 +20,56 @@ public class MainForm extends JFrame {
     }
 
     public MainForm(){
-        try {
-            // La ruta es relativa a la raíz del classpath.
-            // Si la imagen está en resources/images/mi_imagen.png
-            // entonces la ruta en el classpath es /images/mi_imagen.png
-            URL imageUrl = getClass().getResource("/images/clinicaimagen2.png");
-
-            if (imageUrl != null) {
-                ImageIcon icon = new ImageIcon(imageUrl);
-                imageLabel.setIcon(icon);
-                imageLabel.setText("");
-            } else {
-                System.err.println("Imagen no encontrada: /images/clinicaimagen2.png");
-                // Puedes mostrar un mensaje de error o una imagen de placeholder
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error al cargar la imagen: " + e.getMessage());
-        }
+        // Configuración básica del JFrame
+        setContentPane(mainPanel); // ¡IMPORTANTE! Establece el panel raíz del formulario generado por el UI Designer.
+        // Sin esta línea, tu JFrame estaría vacío al inicio.
         setTitle("Sistema en java de escritorio"); // Establece el título de la ventana principal (JFrame).
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configura la operación por defecto al cerrar la ventana para que la aplicación se termine.
         setLocationRelativeTo(null); // Centra la ventana principal en la pantalla.
+
+        // Establece el tamaño preferido del panel principal para que el formulario tenga un tamaño aceptable
+        // antes de maximizarlo. Esto ayuda a la disposición inicial de los componentes.
+        mainPanel.setPreferredSize(new Dimension(900, 650)); // Un tamaño medio de ejemplo (Ancho, Alto)
+        pack(); // Ajusta el tamaño de la ventana a sus contenidos preferidos.
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Inicializa la ventana principal en estado maximizado, ocupando toda la pantalla.
+
         createMenu(); // Llama al método 'createMenu()' para crear y agregar la barra de menú a la ventana principal.
 
-
+        // --- Carga de la imagen en el JLabel ---
+        loadImage();
     }
+
+    /**
+     * Carga la imagen 'clinicaimagen2.png' en el imageLabel.
+     * La imagen debe estar en el classpath, por ejemplo, en src/main/resources/images/.
+     */
+    private void loadImage() {
+        // La ruta de la imagen debe ser relativa al classpath.
+        // Si tu imagen está en src/main/resources/images/clinicaimagen2.png,
+        // la ruta en getResource() será /images/clinicaimagen2.png
+        URL imageUrl = getClass().getResource("images/clinicaimagen2.png");
+
+        if (imageUrl != null) {
+            ImageIcon icon = new ImageIcon(imageUrl);
+
+            // Opcional: Escalar la imagen si es demasiado grande para el JLabel.
+            // Es preferible que la imagen ya tenga un tamaño adecuado para el diseño.
+            // int desiredWidth = imageLabel.getWidth() > 0 ? imageLabel.getWidth() : 800; // Ancho deseado, o un valor por defecto
+            // int desiredHeight = imageLabel.getHeight() > 0 ? imageLabel.getHeight() : 500; // Alto deseado, o un valor por defecto
+            // Image img = icon.getImage().getScaledInstance(desiredWidth, desiredHeight, Image.SCALE_SMOOTH);
+            // imageLabel.setIcon(new ImageIcon(img));
+
+            imageLabel.setIcon(icon); // Asigna el icono al JLabel
+            imageLabel.setText(""); // Asegúrate de que el JLabel no tenga texto que pueda ocultar la imagen
+            imageLabel.setHorizontalAlignment(SwingConstants.CENTER); // Centra la imagen horizontalmente en el JLabel
+            imageLabel.setVerticalAlignment(SwingConstants.CENTER);   // Centra la imagen verticalmente en el JLabel
+        } else {
+            // En caso de que la imagen no se encuentre, se imprime un mensaje de error y se muestra un texto alternativo.
+            System.err.println("Error: Imagen 'clinicaimagen2.png' no encontrada en el classpath. Verifique la ruta: images/clinicaimagen2.png");
+            imageLabel.setForeground(Color.RED); // Texto en rojo para indicar error
+        }
+    }
+
 
     private void createMenu() {
         // Barra de menú

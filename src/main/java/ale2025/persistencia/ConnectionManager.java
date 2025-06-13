@@ -23,11 +23,9 @@ public class ConnectionManager {
      * - password=dev : Contraseña para la autenticación.
      */
 
-<<<<<<< HEAD
+
     private static final String STR_CONNECTION = "jdbc:sqlserver://ANZORAENEIDAPC\\SQLEXPRESS;" +
-=======
-    private static final String STR_CONNECTION = "jdbc:sqlserver://DESKTOP-167JSSF\\SQLEXPRESS01;" +
->>>>>>> d399ec9a3d60164a26cab16dfad00fcbe1dfac3e
+
 
             "encrypt=true; " +
             "database=ClinicaSaludTotal; " +

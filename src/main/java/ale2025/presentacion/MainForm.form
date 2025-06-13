@@ -15,6 +15,7 @@
         <properties>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
+          <icon value="images/clinicaimagen2.png"/>
           <text value=""/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="0"/>
