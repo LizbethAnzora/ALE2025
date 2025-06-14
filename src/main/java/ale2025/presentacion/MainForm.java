@@ -2,7 +2,6 @@ package ale2025.presentacion;
 
 import javax.swing.*;
 import ale2025.dominio.User;
-
 import java.awt.*;
 import java.net.URL;
 
@@ -23,7 +22,7 @@ public class MainForm extends JFrame {
         // Configuración básica del JFrame
         setContentPane(mainPanel); // ¡IMPORTANTE! Establece el panel raíz del formulario generado por el UI Designer.
         // Sin esta línea, tu JFrame estaría vacío al inicio.
-        setTitle("Sistema en java de escritorio"); // Establece el título de la ventana principal (JFrame).
+        setTitle("Clinica Salud Total"); // Establece el título de la ventana principal (JFrame).
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configura la operación por defecto al cerrar la ventana para que la aplicación se termine.
         setLocationRelativeTo(null); // Centra la ventana principal en la pantalla.
 
@@ -63,20 +62,15 @@ public class MainForm extends JFrame {
             imageLabel.setText(""); // Asegúrate de que el JLabel no tenga texto que pueda ocultar la imagen
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER); // Centra la imagen horizontalmente en el JLabel
             imageLabel.setVerticalAlignment(SwingConstants.CENTER);   // Centra la imagen verticalmente en el JLabel
-        } else {
-            // En caso de que la imagen no se encuentre, se imprime un mensaje de error y se muestra un texto alternativo.
-            System.err.println("Error: Imagen 'clinicaimagen2.png' no encontrada en el classpath. Verifique la ruta: images/clinicaimagen2.png");
-            imageLabel.setForeground(Color.RED); // Texto en rojo para indicar error
         }
     }
-
 
     private void createMenu() {
         // Barra de menú
         JMenuBar menuBar = new JMenuBar(); // Crea una nueva barra de menú.
         setJMenuBar(menuBar); // Establece la barra de menú creada como la barra de menú de este JFrame (MainForm).
 
-        JMenu menuPerfil = new JMenu("Perfil"); // Crea un nuevo menú llamado "Perfil".
+        JMenu menuPerfil = new JMenu("Opciones de perfil"); // Crea un nuevo menú llamado "Perfil".
         menuBar.add(menuPerfil); // Agrega el menú "Perfil" a la barra de menú.
 
         JMenuItem itemChangePassword = new JMenuItem("Cambiar contraseña"); // Crea un nuevo elemento de menú llamado "Cambiar contraseña".
@@ -102,7 +96,7 @@ public class MainForm extends JFrame {
 
 
         // Menú "Matenimiento"
-        JMenu menuMantenimiento = new JMenu("Mantenimientos"); // Crea un nuevo menú llamado "Mantenimientos".
+        JMenu menuMantenimiento = new JMenu("Menu de la clinica"); // Crea un nuevo menú llamado "Mantenimientos".
         menuBar.add(menuMantenimiento); // Agrega el menú "Mantenimientos" a la barra de menú.
 
         JMenuItem itemUsers = new JMenuItem("Usuarios"); // Crea un nuevo elemento de menú llamado "Usuarios".
@@ -110,6 +104,15 @@ public class MainForm extends JFrame {
         itemUsers.addActionListener(e -> { // Agrega un ActionListener al elemento "Usuarios".
             UserReadingForm userReadingForm=new UserReadingForm(this); // Cuando se hace clic, crea una nueva instancia de UserReadingForm (formulario para leer/listar usuarios), pasándole la instancia actual de MainForm como padre.
             userReadingForm.setVisible(true); // Hace visible el formulario de lectura de usuarios.
+
+        });
+
+
+        JMenuItem itemPacientes = new JMenuItem("Pacientes"); // Crea un nuevo elemento de menú llamado "Pacientes".
+        menuMantenimiento.add(itemPacientes); // Asume que 'menuMantenimiento' es el JMenu donde quieres agregarlo.
+        itemPacientes.addActionListener(e -> {
+            PacienteReadingForm pacienteReadingForm = new PacienteReadingForm(this);
+            pacienteReadingForm.setVisible(true);
         });
 
     }
