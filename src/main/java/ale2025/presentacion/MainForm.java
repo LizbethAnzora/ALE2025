@@ -115,5 +115,13 @@ public class MainForm extends JFrame {
             pacienteReadingForm.setVisible(true);
         });
 
+
+        JMenuItem itemEspecialidades = new JMenuItem("Especialidades"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemEspecialidades); // Agrega al menú "Mantenimientos".
+        itemEspecialidades.addActionListener(e -> {
+            EspecialidadReadingForm especialidadReadingForm = new EspecialidadReadingForm(this);// Hace visible el formulario de lectura de especialidades.
+            especialidadReadingForm.setVisible(true);
+        });
+
     }
 }
