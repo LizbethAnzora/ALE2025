@@ -123,5 +123,13 @@ public class MainForm extends JFrame {
             especialidadReadingForm.setVisible(true);
         });
 
+
+        JMenuItem itemMedicos = new JMenuItem("Médicos"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemMedicos); // Agrega al menú "Mantenimientos" (ajusta si tu menú tiene otro nombre).
+        itemMedicos.addActionListener(e -> {
+            MedicoReadingForm medicoReadingForm = new MedicoReadingForm(this);
+            medicoReadingForm.setVisible(true);
+        });
+
     }
 }
