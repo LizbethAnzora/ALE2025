@@ -115,5 +115,37 @@ public class MainForm extends JFrame {
             pacienteReadingForm.setVisible(true);
         });
 
+
+        JMenuItem itemEspecialidades = new JMenuItem("Especialidades"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemEspecialidades); // Agrega al menú "Mantenimientos".
+        itemEspecialidades.addActionListener(e -> {
+            EspecialidadReadingForm especialidadReadingForm = new EspecialidadReadingForm(this);// Hace visible el formulario de lectura de especialidades.
+            especialidadReadingForm.setVisible(true);
+        });
+
+
+        JMenuItem itemMedicos = new JMenuItem("Médicos"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemMedicos); // Agrega al menú "Mantenimientos" (ajusta si tu menú tiene otro nombre).
+        itemMedicos.addActionListener(e -> {
+            MedicoReadingForm medicoReadingForm = new MedicoReadingForm(this);
+            medicoReadingForm.setVisible(true);
+        });
+
+
+
+        JMenuItem itemHorarios = new JMenuItem("Horarios"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemHorarios); // Agrega al menú "Mantenimientos" (ajusta si tu menú tiene otro nombre).
+        itemHorarios.addActionListener(e -> {
+            HorarioReadingForm horarioReadingForm = new HorarioReadingForm(this);
+            horarioReadingForm.setVisible(true);
+        });
+
+
+        JMenuItem itemCitas = new JMenuItem("Citas"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemCitas); // Agrega al menú "Mantenimientos" (ajusta si tu menú tiene otro nombre).
+        itemCitas.addActionListener(e -> {
+            CitaReadingForm citaReadingForm = new CitaReadingForm(this);
+            citaReadingForm.setVisible(true);
+        });
     }
 }

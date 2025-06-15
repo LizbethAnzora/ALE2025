@@ -37,4 +37,9 @@ public class Especialidad {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return nombre; // Retorna solo el nombre de la especialidad para mostrar en la UI.
+    }
 }

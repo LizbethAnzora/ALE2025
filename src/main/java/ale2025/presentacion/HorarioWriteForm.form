@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ale2025.presentacion.UserWriteForm">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ale2025.presentacion.HorarioWriteForm">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
@@ -7,91 +7,58 @@
     </constraints>
     <properties>
       <background color="-4071425"/>
+      <foreground color="-2104859"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="25498" class="javax.swing.JLabel">
+      <component id="1c21c" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Segoe UI Black"/>
           <foreground color="-15526327"/>
-          <text value="Nombre *"/>
+          <text value="Medico *"/>
         </properties>
       </component>
-      <vspacer id="8056">
+      <vspacer id="3e17f">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="3a588" class="javax.swing.JTextField" binding="txtName">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="f4b1b" class="javax.swing.JLabel">
+      <component id="b6df8" class="javax.swing.JLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Segoe UI Black"/>
           <foreground color="-15526327"/>
-          <text value="Email *"/>
+          <text value="Día de semana *"/>
         </properties>
       </component>
-      <component id="592c8" class="javax.swing.JTextField" binding="txtEmail">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="fd2a6" class="javax.swing.JLabel" binding="lbPassword">
+      <component id="1582f" class="javax.swing.JLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Segoe UI Black"/>
           <foreground color="-15526327"/>
-          <text value="Contraseña *"/>
+          <text value="Hora de entrada *"/>
         </properties>
       </component>
-      <component id="745" class="javax.swing.JPasswordField" binding="txtPassword">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="96b0b" class="javax.swing.JLabel">
+      <component id="7f358" class="javax.swing.JLabel">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Segoe UI Black"/>
           <foreground color="-15526327"/>
-          <text value="Estado *"/>
+          <text value="Hora de salida *"/>
         </properties>
       </component>
-      <component id="db701" class="javax.swing.JComboBox" binding="cbStatus">
+      <component id="38da0" class="javax.swing.JButton" binding="btnOk">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <model/>
-        </properties>
-      </component>
-      <component id="20873" class="javax.swing.JButton" binding="btnOk">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13652391"/>
@@ -100,7 +67,7 @@
           <text value="OK"/>
         </properties>
       </component>
-      <component id="1f781" class="javax.swing.JButton" binding="btnCancel">
+      <component id="4d5b6" class="javax.swing.JButton" binding="btnCancel">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -110,6 +77,40 @@
           <foreground color="-394241"/>
           <text value="Cancelar"/>
         </properties>
+      </component>
+      <component id="d9b2b" class="javax.swing.JComboBox" binding="cbMedicoId">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model/>
+        </properties>
+      </component>
+      <grid id="1d624" binding="panelHoraFin" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="7c922" binding="panelHoraInicio" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <component id="4370d" class="javax.swing.JTextField" binding="txtDiaSemana">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
       </component>
     </children>
   </grid>

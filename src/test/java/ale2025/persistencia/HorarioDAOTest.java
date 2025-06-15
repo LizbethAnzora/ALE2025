@@ -108,7 +108,7 @@ class HorarioDAOTest {
         // la tabla 'Medicos' debe existir y contener al menos un médico
         // con el ID especificado en 'medicoId' (por ejemplo, 1).
         // Si no existe, este test fallará con un error de clave foránea.
-        Horario horario = new Horario(0, 4, "Lunes", Time.valueOf("08:00:00"), Time.valueOf("16:00:00"));
+        Horario horario = new Horario(0, 1, "Lunes", Time.valueOf("08:00:00"), Time.valueOf("16:00:00"));
 
         // Llama al método 'create' para persistir el horario de prueba en la base de datos y verifica su creación.
         Horario testHorario = create(horario);
