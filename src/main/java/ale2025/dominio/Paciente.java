@@ -49,6 +49,10 @@ public class Paciente {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    @Override
+    public String toString() {
+        return nombreCompleto; // Retorna el valor del campo 'nombreCompleto'
+    }
 
 }
 

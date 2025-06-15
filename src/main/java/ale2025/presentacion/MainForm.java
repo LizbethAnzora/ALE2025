@@ -140,5 +140,12 @@ public class MainForm extends JFrame {
             horarioReadingForm.setVisible(true);
         });
 
+
+        JMenuItem itemCitas = new JMenuItem("Citas"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemCitas); // Agrega al menú "Mantenimientos" (ajusta si tu menú tiene otro nombre).
+        itemCitas.addActionListener(e -> {
+            CitaReadingForm citaReadingForm = new CitaReadingForm(this);
+            citaReadingForm.setVisible(true);
+        });
     }
 }
