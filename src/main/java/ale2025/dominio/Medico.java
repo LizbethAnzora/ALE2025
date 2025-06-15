@@ -48,4 +48,9 @@ public class Medico {
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
+
+    @Override
+    public String toString() {
+        return nombreCompleto; // Retorna solo el nombre completo del médico para mostrar en la UI.
+    }
 }

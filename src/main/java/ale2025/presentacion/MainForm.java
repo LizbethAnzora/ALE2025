@@ -131,5 +131,14 @@ public class MainForm extends JFrame {
             medicoReadingForm.setVisible(true);
         });
 
+
+
+        JMenuItem itemHorarios = new JMenuItem("Horarios"); // Crea un nuevo elemento de menú.
+        menuMantenimiento.add(itemHorarios); // Agrega al menú "Mantenimientos" (ajusta si tu menú tiene otro nombre).
+        itemHorarios.addActionListener(e -> {
+            HorarioReadingForm horarioReadingForm = new HorarioReadingForm(this);
+            horarioReadingForm.setVisible(true);
+        });
+
     }
 }
